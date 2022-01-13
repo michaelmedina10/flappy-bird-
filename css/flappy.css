@@ -2,3 +2,52 @@
   font-family: "Pixel";
   src: url("../fonts/Pixel.ttf");
 }
+
+div.content-flappy {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 80%;
+  background-color: skyblue;
+  border: 2px solid blue;
+  overflow: hidden;
+}
+
+.bird {
+  position: absolute;
+  width: 8%;
+  height: 8%;
+  top: 50%;
+  left: 30%;
+}
+
+h1.title {
+  color: white;
+}
+
+.barrier {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 50%;
+  width: 15%;
+  background-color: skyblue;
+  top: 0;
+}
+
+.pipe {
+  height: 85%;
+  width: 90%;
+  border: 5px solid black;
+  background-color: green;
+}
+
+.border {
+  height: 15%;
+  width: 100%;
+  border-left: 5px solid black;
+  border-right: 5px solid black;
+  background-color: green;
+}

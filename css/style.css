@@ -14,22 +14,6 @@ body {
   background-color: rgb(15, 48, 15);
 }
 
-h1.title {
-  color: white;
-}
-
-div.conteudo {
-  position: relative;
-  width: 50%;
-  height: 80%;
-  background-color: skyblue;
-  border: 2px solid blue;
-}
-
-.passaro {
-  position: absolute;
-  width: 8%;
-  height: 8%;
-  top: 50%;
-  left: 30%;
+h1 {
+  font-size: 40px;
 }
