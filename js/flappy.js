@@ -56,11 +56,12 @@ function Barriers(height, gap, spaceBetween, width, sumPoint) {
   this.pairs = [
     new PairBarriers(height, gap, width),
     new PairBarriers(height, gap, width + spaceBetween),
-    // new PairBarriers(height, gap, width + spaceBetween * 2),
-    // new PairBarriers(height, gap, width + spaceBetween * 3),
+    new PairBarriers(height, gap, width + spaceBetween * 2),
+    new PairBarriers(height, gap, width + spaceBetween * 3),
   ];
 
   let displacement = 3;
+
   this.animar = () => {
     this.pairs.forEach((pair, index) => {
       pair.setX(pair.getX() - displacement);
@@ -84,7 +85,7 @@ function Barriers(height, gap, spaceBetween, width, sumPoint) {
   };
 }
 
-const barriers = new Barriers(550, 200, 200, 600);
+const barriers = new Barriers(550, 200, 300, 600);
 const gameZone = document.querySelector("[flappy-board]");
 
 barriers.pairs.forEach((bar) => gameZone.appendChild(bar.element));

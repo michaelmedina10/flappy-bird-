@@ -26,7 +26,7 @@ h1.title {
 }
 
 .pair-barriers {
-  position: relative;
+  position: absolute;
   top: 0;
   height: 100%;
   display: flex;
