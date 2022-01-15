@@ -17,8 +17,7 @@ div.content-flappy {
   position: absolute;
   width: 8%;
   height: 8%;
-  top: 50%;
-  left: 30%;
+  /* bottom: 300px; */
 }
 
 h1.title {

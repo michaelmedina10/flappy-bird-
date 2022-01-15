@@ -46,7 +46,6 @@ function PairBarriers(height, gap, x) {
   this.getWidth = () => this.element.clientWidth;
 
   this.drawHeight();
-  console.log("GetX dentro PairBarriers" + this.getX());
   this.setX(x);
 }
 // const b = new PairBarriers(600, 200, 200);
@@ -62,7 +61,7 @@ function Barriers(height, gap, spaceBetween, width, sumPoint) {
 
   let displacement = 3;
 
-  this.animar = () => {
+  this.animate = () => {
     this.pairs.forEach((pair, index) => {
       pair.setX(pair.getX() - displacement);
 
@@ -85,10 +84,42 @@ function Barriers(height, gap, spaceBetween, width, sumPoint) {
   };
 }
 
+function Bird(heightOfGame) {
+  this.element = newElement("img", "bird");
+  this.element.src = "../imgs/passaroRedBird100px.png";
+
+  let fly = false;
+  window.onkeydown = (event) => (fly = true);
+  window.onkeyup = (event) => (fly = false);
+
+  this.getY = () => parseInt(this.element.style.bottom.split("px")[0]);
+  this.setY = (y) => (this.element.style.bottom = `${y}px`);
+
+  this.animate = () => {
+    let newY = this.getY() + (fly ? 10 : -5);
+    let maximumHeight = heightOfGame - this.element.clientHeight - 25;
+
+    console.log("Maximum Height: " + maximumHeight);
+
+    if (newY <= 0) {
+      this.setY(0);
+    } else if (newY >= maximumHeight) {
+      this.setY(maximumHeight);
+    } else {
+      this.setY(newY);
+    }
+  };
+  this.setY(heightOfGame / 2);
+}
+
+// THE GAME HERE ALREADY WORKS, BUT THERE IS NO COLISION
 const barriers = new Barriers(550, 200, 300, 600);
+const bird = new Bird(600);
 const gameZone = document.querySelector("[flappy-board]");
+gameZone.appendChild(bird.element);
 
 barriers.pairs.forEach((bar) => gameZone.appendChild(bar.element));
 setInterval(() => {
-  barriers.animar();
+  barriers.animate();
+  bird.animate();
 }, 20);
