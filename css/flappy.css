@@ -97,7 +97,7 @@ h1.title {
   border-radius: 10%;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   div.content-flappy {
     width: 100%;
   }
