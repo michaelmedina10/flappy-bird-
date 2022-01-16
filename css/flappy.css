@@ -100,5 +100,10 @@ h1.title {
 @media screen and (max-width: 900px) {
   div.content-flappy {
     width: 100%;
+    margin: 5%;
+  }
+
+  .content-flappy .option-board {
+    left: 10%;
   }
 }
