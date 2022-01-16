@@ -165,7 +165,7 @@ function collided(bird, barriers) {
       console.log(collided);
     }
   });
-  console.log("Collided?: " + collided);
+  // console.log("Collided?: " + collided);
   return collided;
 }
 
@@ -181,23 +181,24 @@ function FlappyBird() {
   const barriers = new Barriers(hieght, 200, 400, width, () =>
     progress.updateScore(score++)
   );
-  // const barriers = new Barriers(550, 200, 380, 600, () =>
-  //   progress.updateScore(++score)
-  // );
-
+  const boardOption = new OptionGameBoard();
   const bird = new Bird(hieght);
 
   areaOfGame.appendChild(progress.element);
   areaOfGame.appendChild(bird.element);
+  areaOfGame.appendChild(boardOption.element);
   barriers.pairs.forEach((pair) => areaOfGame.appendChild(pair.element));
 
   this.start = () => {
     const timerID = setInterval(() => {
+      boardOption.element.remove();
       barriers.animate();
       bird.animate();
 
       if (collided(bird.element, barriers)) {
         clearInterval(timerID);
+        areaOfGame.innerText = "";
+        areaOfGame.appendChild(boardOption.element);
       }
     }, 20);
   };
@@ -216,8 +217,8 @@ function OptionGameBoard() {
   this.element.appendChild(button);
 
   button.onclick = (event) => {
-    new FlappyBird().start();
     this.element.style.display = "none";
+    new FlappyBird().start();
   };
 }
 
