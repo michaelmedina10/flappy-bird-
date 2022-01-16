@@ -201,4 +201,24 @@ function FlappyBird() {
   };
 }
 
-new FlappyBird().start();
+// new FlappyBird().start();
+
+function OptionGameBoard() {
+  this.element = newElement("div", "option-board");
+  const subtitle = newElement("span", "option-title");
+  const button = newElement("button", "start-game");
+  button.innerHTML = "STarT";
+  subtitle.innerHTML = "Flappy Bird";
+
+  this.element.appendChild(subtitle);
+  this.element.appendChild(button);
+
+  button.onclick = (event) => {
+    new FlappyBird().start();
+    this.element.style.display = "none";
+  };
+}
+
+document
+  .querySelector("[flappy-board]")
+  .appendChild(new OptionGameBoard().element);

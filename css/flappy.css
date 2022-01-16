@@ -63,3 +63,36 @@ h1.title {
   font-size: 50px;
   z-index: 100;
 }
+
+.content-flappy .option-board {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  left: 30%;
+  top: 40%;
+  background-color: rgb(30, 30, 85);
+  overflow: hidden;
+}
+.option-board .option-title {
+  position: relative;
+  left: 10%;
+  font-family: Pixel;
+  width: 100%;
+  height: 20%;
+  font-size: 50px;
+  color: white;
+  padding-left: 5%;
+}
+
+.option-board .start-game {
+  display: flex;
+  height: 10%;
+  background-color: green;
+  margin: 5%;
+  font-family: Pixel;
+  font-size: 30px;
+  color: white;
+  border-radius: 10%;
+}
