@@ -96,3 +96,9 @@ h1.title {
   color: white;
   border-radius: 10%;
 }
+
+@media screen and (max-width: 700px) {
+  div.content-flappy {
+    width: 100%;
+  }
+}
