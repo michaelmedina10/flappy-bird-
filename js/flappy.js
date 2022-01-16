@@ -89,6 +89,8 @@ function Bird(heightOfGame) {
   let fly = false;
   window.onkeydown = (event) => (fly = true);
   window.onkeyup = (event) => (fly = false);
+  window.ontouchstart = (event) => (fly = true);
+  window.ontouchend = (event) => (fly = false);
 
   this.getY = () => parseInt(this.element.style.bottom.split("px")[0]);
   this.setY = (y) => (this.element.style.bottom = `${y}px`);
@@ -176,7 +178,7 @@ function FlappyBird() {
   console.log("Width Flappy: " + width);
 
   const progress = new Progress();
-  const barriers = new Barriers(hieght, 200, 380, width, () =>
+  const barriers = new Barriers(hieght, 200, 400, width, () =>
     progress.updateScore(score++)
   );
   // const barriers = new Barriers(550, 200, 380, 600, () =>
