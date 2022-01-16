@@ -169,6 +169,38 @@ function collided(bird, barriers) {
   return collided;
 }
 
+function FlappyBird() {
+  let score = 0;
+  const areaOfGame = document.querySelector("[flappy-board]");
+  const hieght = areaOfGame.clientHeight;
+  const width = areaOfGame.clientWidth;
+  console.log("Height Flappy: " + hieght);
+  console.log("Width Flappy: " + width);
+
+  const progress = new Progress();
+  const barriers = new Barriers(hieght, 200, 400, width, () =>
+    progress.updateScore(score++)
+  );
+  const bird = new Bird(hieght);
+
+  areaOfGame.appendChild(progress.element);
+  areaOfGame.appendChild(bird.element);
+  barriers.pairs.forEach((pair) => areaOfGame.appendChild(pair.element));
+
+  this.start = () => {
+    const timerID = setInterval(() => {
+      barriers.animate();
+      bird.animate();
+
+      if (collided(bird.element, barriers)) {
+        clearInterval(timerID);
+      }
+    }, 20);
+  };
+}
+
+// new FlappyBird().start();
+
 function OptionGameBoard() {
   this.element = newElement("div", "option-board");
   const subtitle = newElement("span", "option-title");
@@ -185,39 +217,6 @@ function OptionGameBoard() {
   };
 }
 
-function FlappyBird() {
-  let score = 0;
-  const areaOfGame = document.querySelector("[flappy-board]");
-  const hieght = areaOfGame.clientHeight;
-  const width = areaOfGame.clientWidth;
-  console.log("Height Flappy: " + hieght);
-  console.log("Width Flappy: " + width);
-
-  const progress = new Progress();
-  const barriers = new Barriers(hieght, 200, 400, width, () =>
-    progress.updateScore(score++)
-  );
-  const boardOption = new OptionGameBoard();
-  const bird = new Bird(hieght);
-
-  areaOfGame.appendChild(boardOption.element);
-  barriers.pairs.forEach((pair) => areaOfGame.appendChild(pair.element));
-
-  this.start = () => {
-    areaOfGame.appendChild(progress.element);
-    areaOfGame.appendChild(bird.element);
-    const timerID = setInterval(() => {
-      boardOption.element.remove();
-      barriers.animate();
-      bird.animate();
-
-      if (collided(bird.element, barriers)) {
-        clearInterval(timerID);
-        areaOfGame.innerText = "";
-        areaOfGame.appendChild(boardOption.element);
-      }
-    }, 20);
-  };
-}
-
-new FlappyBird();
+document
+  .querySelector("[flappy-board]")
+  .appendChild(new OptionGameBoard().element);
