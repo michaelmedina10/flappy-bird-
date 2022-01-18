@@ -194,6 +194,8 @@ function FlappyBird() {
 
       if (collided(bird.element, barriers)) {
         clearInterval(timerID);
+        areaOfGame.innerText = "";
+        areaOfGame.appendChild(new OptionGameBoard().element);
       }
     }, 20);
   };
@@ -212,6 +214,11 @@ function OptionGameBoard() {
   this.element.appendChild(button);
 
   button.onclick = (event) => {
+    this.element.style.display = "none";
+    new FlappyBird().start();
+  };
+
+  button.ontouchend = (event) => {
     this.element.style.display = "none";
     new FlappyBird().start();
   };
