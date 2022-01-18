@@ -178,7 +178,7 @@ function FlappyBird() {
   console.log("Width Flappy: " + width);
 
   const progress = new Progress();
-  const barriers = new Barriers(hieght, 200, 400, width, () =>
+  const barriers = new Barriers(hieght, 200, 450, width, () =>
     progress.updateScore(score++)
   );
   const bird = new Bird(hieght);
@@ -195,7 +195,9 @@ function FlappyBird() {
       if (collided(bird.element, barriers)) {
         clearInterval(timerID);
         areaOfGame.innerText = "";
-        areaOfGame.appendChild(new OptionGameBoard().element);
+        areaOfGame.appendChild(
+          new OptionGameBoard("Restart", "Game Over").element
+        );
       }
     }, 20);
   };
@@ -203,12 +205,12 @@ function FlappyBird() {
 
 // new FlappyBird().start();
 
-function OptionGameBoard() {
+function OptionGameBoard(textButton, textTitle) {
   this.element = newElement("div", "option-board");
   const subtitle = newElement("span", "option-title");
   const button = newElement("button", "start-game");
-  button.innerHTML = "STarT";
-  subtitle.innerHTML = "Flappy Bird";
+  button.innerHTML = textButton;
+  subtitle.innerHTML = textTitle;
 
   this.element.appendChild(subtitle);
   this.element.appendChild(button);
@@ -226,4 +228,4 @@ function OptionGameBoard() {
 
 document
   .querySelector("[flappy-board]")
-  .appendChild(new OptionGameBoard().element);
+  .appendChild(new OptionGameBoard("Start", "Flappy Bird").element);
